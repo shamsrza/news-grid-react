@@ -1,6 +1,4 @@
-import type { NextPage } from 'next'
 import Head from 'next/head';
-import { openStdin } from 'process';
 import {PostCard, PostCardNoImage, Categories, PostWidget, Header, PostCardSecond, Banner } from '../components';
 import {getPosts} from '../services';
 
@@ -14,7 +12,7 @@ import {getPosts} from '../services';
 //   {title: 'React with Tailwind', excerpt: 'Learn React with Tailwind'},
 // ];
 
-export default function Home( { posts }) {
+export default function Home({posts}) {
 const postsId = posts.id;
   
 console.log(posts);
@@ -43,7 +41,7 @@ console.log(posts);
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:col-span-3 ">
 
 
-          <div className='grid gap-4 lg:col-span-2 '>
+          <div className='grid gap-4 lg:col-span-2 shadow-lg'>
             {posts.map((post) => (
               ((post.node.slug == 'uci-cwc-2023'))
               ? (<PostCard post={ post.node } key={ post.title } /> ) 
@@ -52,7 +50,7 @@ console.log(posts);
           </div>
 
                
-          <div className='grid gap-4 lg:col-span-1 '>
+          <div className='grid gap-4 lg:col-span-1 shadow-lg'>
             {posts.map((post) => (
               ((post.node.slug == 'meta'))
               ? (<PostCardNoImage post={ post.node } key={ post.title }/> ) 
@@ -60,20 +58,21 @@ console.log(posts);
               ))}              
           </div>
 
+
             {posts.map((post) => (
               ((post.node.slug == 'cristiano-ronaldo-manchester-united') || (post.node.slug == 'angela-lansbury-dead') || (post.node.slug == 'meta-vr-headset' ))
               ? (<PostCardSecond post={ post.node } key={ post.title } /> ) 
                 : null
               ))}             
 
-          <div className='grid gap-4 lg:col-span-1 '>
+          <div className='grid gap-4 lg:col-span-1 shadow-lg '>
             {posts.map((post) => (
               ((post.node.slug == 'cristiano-ronaldo'))
               ? (<PostCardNoImage post={ post.node } key={ post.title} /> ) 
                 : null
               ))}              
           </div>
-          <div className='grid gap-4 lg:col-span-2 '>
+          <div className='grid gap-4 lg:col-span-2 shadow-lg'>
             {posts.map((post) => (
               ((post.node.slug == 'five-hours-sleep'))
               ? (<PostCard post={ post.node } key={ post.title } /> ) 
@@ -84,8 +83,8 @@ console.log(posts);
        </div> 
 
           <div className="grid lg:grid-cols-1 gap-4 lg:sticky relative top-8 h-24">
-            <div className="... bg-purple-500"><PostWidget/></div>
-            <div className="... bg-purple-500"><Categories/></div>
+            <PostWidget />
+            <Categories/>
           </div>
         </div>
 
